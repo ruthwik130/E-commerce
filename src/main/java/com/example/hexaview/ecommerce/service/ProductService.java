@@ -11,10 +11,25 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductDAO productdao;
+
     public ProductModel addProduct(ProductModel product){
         return productdao.save(product);
     }
+
     public List<ProductModel> getProducts(){
         return productdao.findAll();
+    }
+
+    public ProductModel getProductByID(int id){
+        return productdao.findById(id).get();
+    }
+
+    public ProductModel updateProduct(int id,ProductModel product){
+        product.setId(id);
+        return productdao.save(product);
+    }
+
+    public void deleteProduct(int id){
+        productdao.deleteById(id);
     }
 }
